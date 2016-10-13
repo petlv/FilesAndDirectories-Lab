@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _3_WordCount
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            char[] separators = new char[] { '\n', '\r', ' ', '.', ',', '!', '?', '-' };
+            string[] inputText = File.ReadAllText("InputFiles/text.txt").ToLower().Split(separators, StringSplitOptions.RemoveEmptyEntries);
+            string[] inputWords = File.ReadAllText("InputFiles/words.txt").ToLower().Split(' ');
+            Dictionary<string, int> frequence = new Dictionary<string, int>();
+
+            foreach (string item in inputWords)
+            {
+                frequence[item] = 0;
+            }
+
+            foreach (string item in inputText)
+            {
+                if (frequence.ContainsKey(item))
+                {
+                    frequence[item]++;
+                }
+            }
+            
+
+            foreach (var item in frequence.OrderByDescending(k => k.Value))
+            {
+                File.AppendAllText("InputFiles/results.txt", string.Format("{0} - {1}{2}", item.Key, item.Value, Environment.NewLine));
+            }
+            
+
+        }
+    }
+}
