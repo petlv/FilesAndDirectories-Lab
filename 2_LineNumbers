@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _2_LineNumbers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] input = File.ReadAllLines("MyFiles/Input.txt");
+            string[] output = new string[input.Length];
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                output[i] = string.Format("{0}. {1}", i+1, input[i]);
+                
+            }
+            File.WriteAllLines("MyFiles/Output.txt", output);
+
+        }
+    }
+}
