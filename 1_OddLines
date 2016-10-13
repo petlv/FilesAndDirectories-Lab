@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1_OddLines
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] input = File.ReadAllLines("Input-Files/Input.txt");
+            List<string> output = new List<string>();
+
+            for (int i = 1; i <= input.Length; i+=2)
+            {
+                output.Add(input[i]);
+            }
+
+            File.WriteAllLines("Input-Files/Output.txt", output);
+        }
+    }
+}
