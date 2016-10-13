@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _4_MergeFiles
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] inputText1 = File.ReadAllLines("FileOne.txt");
+            string[] inputText2 = File.ReadAllLines("FileTwo.txt");
+            int minLength = Math.Min(inputText1.Length, inputText2.Length);
+
+            List<string> result = new List<string>();
+
+            for (int i = 0; i < minLength; i++)
+            {
+                result.Add(inputText1[i]);
+                result.Add(inputText2[i]);
+            }
+
+            if (inputText1.Length > inputText2.Length)
+            {
+                for (int i = minLength; i < inputText1.Length; i++)
+                {
+                    result.Add(inputText1[i]);
+                }    
+            }
+            else if (inputText1.Length < inputText2.Length)
+            {
+                for (int i = minLength; i < inputText2.Length; i++)
+                {
+                    result.Add(inputText2[i]);
+                }
+            }
+
+            File.WriteAllLines("result.txt", result);
+
+        }
+    }
+}
